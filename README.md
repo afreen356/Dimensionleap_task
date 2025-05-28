@@ -1,20 +1,54 @@
 <<<<<<< HEAD
 # flutter_post_app
 
-A new Flutter project.
+A Flutter application for browsing job listings with responsive design for both mobile and desktop.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Browse job listings with detailed information
+- Save favorite jobs
+- Responsive UI (mobile and desktop layouts)
+- Clean folder structure
+- State management with Provider
+- Custom theming and colors
+- User profile section
 
-A few resources to get you started if this is your first Flutter project:
+## Project structure
+lib/
+├── constants/
+│   └── api_constants.dart      # API URLs and endpoints
+│
+├── src/
+│   ├── application/           # State management
+│   │   └── post_provider.dart # Provider for posts
+│   │
+│   ├── domain/                # Business logic
+│   │   └── api_service.dart   # API service 
+│   │
+│   ├── data/                  # Data layer
+│   │   ├── models/            # Data models
+│   │     └── post_model.dart
+│   │        
+│   │
+│   └── presentation/          # UI layer
+│       ├── constants/         # Presentation constants
+│       ├── views/             # Screen widgets
+│       └── widgets/           # Reusable components
+│
+└── main.dart                  # App entry point
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Prerequisites
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter SDK (Flutter 3.29.3 )
+- Dart SDK(3.7.2)
+- Android Studio/VSCode with Flutter plugin
+
+# installation
+
+clone the repository:
+git clone  https://github.com/afreen356/Dimensionleap_task
+  
 =======
 # Dimensionleap_task
->>>>>>> bbaa89e1e82f1fa844d6dcade526a0913b8d7c5e
+
+
