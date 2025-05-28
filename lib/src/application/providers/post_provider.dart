@@ -17,23 +17,23 @@ class PostProvider with ChangeNotifier {
   String errorMessage = '';
   
   // Controllers
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
+  final TextEditingController userIdcontroller= TextEditingController();
+  final TextEditingController postIdcontroller= TextEditingController();
 
   PostProvider({required ApiService apiService}) : _apiService = apiService {
     _init();
   }
 
   void _init() {
-    titleController.addListener(_onSearchChanged);
-    locationController.addListener(_onSearchChanged);
+    userIdcontroller.addListener(_onSearchChanged);
+    postIdcontroller.addListener(_onSearchChanged);
     _fetchPosts();
   }
   
   @override
   void dispose() {
-    titleController.dispose();
-    locationController.dispose();
+    userIdcontroller.dispose();
+    postIdcontroller.dispose();
     _debounce?.cancel();
     super.dispose();
   }
@@ -86,24 +86,31 @@ class PostProvider with ChangeNotifier {
   }
   
   void filterPosts() {
-    final titleQuery = titleController.text.trim().toLowerCase();
-    final locationQuery = locationController.text.trim().toLowerCase();
-    
-    if (titleQuery.isEmpty && locationQuery.isEmpty) {
-      _distributePosts();
-      return;
-    }
-    
-    final filteredPosts = _allPosts.where((post) {
-      final matchesTitle = titleQuery.isEmpty || 
-          post.title.toLowerCase().contains(titleQuery);
-      final matchesLocation = locationQuery.isEmpty || 
-          post.body.toLowerCase().contains(locationQuery);
-      return matchesTitle && matchesLocation;
-    }).toList();
-    
-    _updateFilteredPosts(filteredPosts);
+  final userIdStr = userIdcontroller.text.trim();
+  final postIdStr = postIdcontroller.text.trim();
+
+  // If both fields are empty, show all posts
+  if (userIdStr.isEmpty && postIdStr.isEmpty) {
+    _distributePosts();
+    return;
   }
+
+  // Convert inputs to integers
+  final userId = userIdStr.isNotEmpty ? int.tryParse(userIdStr) : null;
+  final postId = postIdStr.isNotEmpty ? int.tryParse(postIdStr) : null;
+
+  List<PostModel> filteredPosts = [];
+
+  // Search logic based on priority (Post ID takes precedence)
+  if (postId != null) {
+    filteredPosts = _allPosts.where((post) => post.id == postId).toList();
+  } 
+  else if (userId != null) {
+    filteredPosts = _allPosts.where((post) => post.userId == userId).toList();
+  }
+
+  _updateFilteredPosts(filteredPosts);
+}
   
   void _updateFilteredPosts(List<PostModel> filteredPosts) {
     final totalPosts = filteredPosts.length;

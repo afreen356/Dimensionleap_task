@@ -51,10 +51,10 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 SearchWidget(
                                   isDesktop: isDesktop,
-                                  titleController: provider.titleController,
-                                  locationController:
-                                      provider.locationController,
-                                  onSearch: provider.filterPosts,
+                                  userIdcontroller: provider.userIdcontroller,
+                                  postIdcontroller:
+                                      provider.postIdcontroller,
+                                  onSearch: () => provider.filterPosts(),
                                 ),
                                 const SizedBox(height: 20),
                                 buildJobsSection(

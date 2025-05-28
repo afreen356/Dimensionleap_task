@@ -19,7 +19,7 @@ class JobCardWidget extends StatelessWidget {
    
     
     // Create company name
-    String companyName = "Ora Apps Inc ${post.userId}";
+    String companyName = "Ora Apps Inc ";
     
     
    
@@ -94,6 +94,7 @@ class JobCardWidget extends StatelessWidget {
                       companyName,
                       style: TextStyle(
                         color: AppColors.textMedium,
+                        decoration: TextDecoration.underline,
                         fontSize: 14,
                       ),
                     ),

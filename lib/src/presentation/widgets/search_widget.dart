@@ -3,15 +3,15 @@ import 'package:flutter_post_app/src/presentation/constants/colors.dart';
 
 class SearchWidget extends StatelessWidget {
   final bool isDesktop;
-  final TextEditingController titleController;
-  final TextEditingController locationController;
+  final TextEditingController userIdcontroller;
+  final TextEditingController postIdcontroller;
   final VoidCallback onSearch;
 
   const SearchWidget({
     super.key,
     required this.isDesktop,
-    required this.titleController,
-    required this.locationController,
+    required this.userIdcontroller,
+    required this.postIdcontroller,
     required this.onSearch,
   });
 
@@ -43,18 +43,18 @@ class SearchWidget extends StatelessWidget {
             children: [
               // Job Title Search
               _buildSearchField(
-                controller: titleController,
+                controller: userIdcontroller,
                 hintText: 'User Experience Designer',
-                prefixIcon: Icons.search,
+                suffixIcon:  Icons.search,
                 width: isDesktop ? 300 : double.infinity,
               ),
               
               // Location Search
               _buildSearchField(
-                controller: locationController,
+                controller: postIdcontroller,
                 hintText: 'Hyattsville',
-                prefixIcon: Icons.location_on_outlined,
-                suffixIcon: Icons.my_location,
+                
+               suffixIcon: Icons.location_pin,
                 width: isDesktop ? 300 : double.infinity,
               ),
               
@@ -89,7 +89,7 @@ class SearchWidget extends StatelessWidget {
   Widget _buildSearchField({
     required TextEditingController controller,
     required String hintText,
-    required IconData prefixIcon,
+   
     IconData? suffixIcon,
     required double width,
   }) {
@@ -104,7 +104,7 @@ class SearchWidget extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.black),
-          prefixIcon: Icon(prefixIcon, color: Colors.black),
+         
           suffixIcon: suffixIcon != null 
             ? Padding(
                 padding: const EdgeInsets.only(right: 8.0),
